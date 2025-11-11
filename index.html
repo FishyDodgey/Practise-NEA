@@ -20,28 +20,27 @@
             </div>
             <button type="submit">Login</button>
         </form>
+
+        <button id="forgot-btn" onclick="forgotPassword()">Forgot Password?</button>
     </div>
 
     <script>
         function checkLogin(event) {
-            event.preventDefault(); // Prevent form from submitting normally
+            event.preventDefault();
 
-            // Example hardcoded credentials:
             const validUsername = "admin";
             const validPassword = "1234";
-
-            // Get input values
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
-            // Check credentials
             if (username === validUsername && password === validPassword) {
                 window.location.href = "blank.html";
             } else {
                 alert("Incorrect username or password. Please try again.");
             }
         }
-      async function forgotPassword() {
+
+        async function forgotPassword() {
             const email = prompt("Please enter your email address:");
             if (!email) return;
 
@@ -57,3 +56,4 @@
     </script>
 </body>
 </html>
+

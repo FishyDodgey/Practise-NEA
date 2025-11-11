@@ -1,0 +1,21 @@
+/* Reset some default browser styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Center the login box in the middle of the screen */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container for the login form */
+.login-container {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    bord

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Screen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+    <div class="login-container">
+        <h1>Login</h1>
+        <form onsubmit="return checkLogin(event)">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function checkLogin(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Example hardcoded credentials:
+            const validUsername = "admin";
+            const validPassword = "1234";
+
+            // Get input values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Check credentials
+            if (username === validUsername && password === validPassword) {
+                window.location.href = "blank.html";
+            } else {
+                alert("Incorrect username or password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

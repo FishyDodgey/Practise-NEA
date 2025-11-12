@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Email headers
         $headers = "From: no-reply@example.com\r\n" .
-                   "Reply-To: no-reply@example.com\r\n" .
+                   "Reply-To: jbushell24@synergymat.uk\r\n" .
                    "X-Mailer: PHP/" . phpversion();
 
         // Send the email

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Store the token in a real database in production!
         // Example reset link (replace example.com with your domain)
-        $resetLink = "https://example.com/reset_password.php?token=$token";
+        $resetLink = "https://https://fishydodgey.github.io/Practise-NEA//reset_password.php?token=$token";
 
         // Email subject and body
         $subject = "Password Reset Request";
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message .= "If you didn’t request this, ignore this email.\n\n— Your Website Team";
 
         // Email headers
-        $headers = "From: no-reply@example.com\r\n" .
+        $headers = "From: jbushell24@synergymat.uk\r\n" .
                    "Reply-To: jbushell24@synergymat.uk\r\n" .
                    "X-Mailer: PHP/" . phpversion();
 

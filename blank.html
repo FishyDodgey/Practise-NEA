@@ -1,16 +1,26 @@
-<!-- blank.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
+    <div class="welcome-container">
+        <h1>Welcome!</h1>
+        <p>You’ve successfully logged in.</p>
 
-<h1>blank.html</h1>
-<button onclick="goBack()">Go Back</button>
+        <div class="button-group">
+            <!-- Return (back to login) -->
+            <a href="index.html"><button>Return to Login</button></a>
 
-<script>
-function goBack() {
-    window.location.href = "index.html";
-}
-</script>
-
+            <!-- New pages -->
+            <a href="page1.html"><button>Page 1</button></a>
+            <a href="page2.html"><button>Page 2</button></a>
+            <a href="page3.html"><button>Page 3</button></a>
+        </div>
+    </div>
 </body>
 </html>
+

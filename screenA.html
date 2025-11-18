@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen A</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Screen A</h1>
+
+        <!-- Buttons -->
+        <div class="button-row">
+            <a href="page1.html"><button>Return</button></a>
+            <button onclick="addRow()">Add Row</button>
+            <button onclick="deleteRow()">Delete Last Row</button>
+            <button onclick="clearTable()">Clear Table</button>
+        </div>
+
+        <!-- Table -->
+        <table id="myTable" border="1" style="margin-top: 20px; width: 60%; text-align:center;">
+            <tr>
+                <th>ID</th>
+                <th>Item</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("myTable");
+            let row = table.insertRow(-1);
+            let id = row.insertCell(0);
+            let item = row.insertCell(1);
+
+            id.innerHTML = table.rows.length - 1;
+            item.innerHTML = "New Item";
+        }
+
+        function deleteRow() {
+            let table = document.getElementById("myTable");
+            if (table.rows.length > 1) table.deleteRow(-1);
+        }
+
+        function clearTable() {
+            let table = document.getElementById("myTable");
+
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+        }
+    </script>
+</body>
+</html>

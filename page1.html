@@ -16,10 +16,50 @@
         <a href="screenB.html"><button>Go to Screen B</button></a>
 
         <br><br>
-
         <a href="blank.html"><button>Return</button></a>
+
+        <hr><br>
+
+        <!-- NEW TABLE + BUTTONS -->
+        <h2>Editable Table</h2>
+
+        <div class="button-row">
+            <button onclick="addRow()">Add Row</button>
+            <button onclick="deleteRow()">Delete Last Row</button>
+        </div>
+
+        <table id="myTable" border="1" style="margin-top: 20px; width: 60%; text-align:center;">
+            <tr>
+                <th>ID</th>
+                <th>Item</th>
+            </tr>
+        </table>
+
     </div>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("myTable");
+            let row = table.insertRow(-1);
+
+            let id = row.insertCell(0);
+            let item = row.insertCell(1);
+
+            id.innerHTML = table.rows.length - 1;
+            item.innerHTML = "New Item";
+        }
+
+        function deleteRow() {
+            let table = document.getElementById("myTable");
+
+            if (table.rows.length > 1) {
+                table.deleteRow(-1);
+            }
+        }
+    </script>
+
 </body>
 </html>
+
 
 

@@ -8,9 +8,30 @@
 </head>
 <body>
     <div class="welcome-container">
-        <h1>Page 2</h1>
-        <p>This is Page 2.</p>
-        <a href="blank.html"><button>Return</button></a>
+
+        <h1>Page 2 — Table Screen</h1>
+
+        <!-- Buttons -->
+        <div class="button-row">
+            <a href="blank.html"><button>Return</button></a>
+            <button onclick="addRow()">Add Row</button>
+            <button onclick="deleteRow()">Delete Last Row</button>
+        </div>
+
+        <!-- Table -->
+        <table id="myTable" border="1" style="margin-top: 20px; width: 70%; text-align:center;">
+            <tr>
+                <th>ID</th>
+                <th>Item</th>
+            </tr>
+        </table>
+
     </div>
-</body>
-</html>
+
+    <script>
+        function addRow() {
+            const table = document.getElementById("myTable");
+            const row = table.insertRow(-1);
+
+            const id =
+

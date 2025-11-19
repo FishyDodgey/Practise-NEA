@@ -8,9 +8,53 @@
 </head>
 <body>
     <div class="welcome-container">
+
         <h1>Page 3</h1>
         <p>This is Page 3.</p>
+
+        <!-- Return Button -->
         <a href="blank.html"><button>Return</button></a>
+
+        <hr><br>
+
+        <!-- Add Row Button -->
+        <button onclick="addRow()">Add Row</button>
+
+        <!-- Table -->
+        <table id="myTable" border="1" style="margin-top: 20px; width: 80%; text-align:center;">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </table>
     </div>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("myTable");
+            let row = table.insertRow(-1);
+
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+
+            let rowCount = table.rows.length - 1;
+
+            cell1.innerHTML = rowCount;
+            cell2.innerHTML = `<input type="text" placeholder="Enter name">`;
+            cell3.innerHTML = `<input type="number" value="1" min="1">`;
+            cell4.innerHTML = `<button onclick="deleteRow(this)">Delete</button>`;
+        }
+
+        function deleteRow(button) {
+            let row = button.parentNode.parentNode;
+            row.remove();
+        }
+    </script>
+
 </body>
 </html>
+

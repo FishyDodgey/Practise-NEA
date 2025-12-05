@@ -7,107 +7,119 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        table.matrix td {
-            width: 40px;
-            height: 30px;
-            text-align: center;
+        table.inventory {
+            border-collapse: collapse;
+            width: 450px;
         }
-        table.matrix td[contenteditable="true"] {
-            background: #f9f9f9;
+        table.inventory th, table.inventory td {
+            border: 1px solid #333;
+            padding: 6px 10px;
+            text-align: left;
+        }
+        table.inventory td[contenteditable="true"] {
+            background: #f7f7f7;
+        }
+        th {
+            background: #e6e6e6;
         }
     </style>
 </head>
+
 <body>
     <div class="welcome-container">
         <h1>Page 1</h1>
 
         <p>Select a screen:</p>
-
         <a href="screenA.html"><button>Go to Screen A</button></a>
         <a href="screenB.html"><button>Go to Screen B</button></a>
-
         <br><br>
         <a href="blank.html"><button>Return</button></a>
 
         <hr><br>
 
-        <h2>Editable Matrix Table</h2>
+        <h2>Metal Inventory</h2>
 
-        <!-- FIXED: Give the table an ID and make cells editable -->
-        <table id="matrixTable" class="matrix" border="1" cellpadding="6" cellspacing="0">
+        <!-- TABLE FORMAT MATCHING YOUR IMAGE -->
+        <table id="metalTable" class="inventory">
             <tr>
-                <th></th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
+                <th>Metal</th>
+                <th>New Sheets</th>
+                <th>Old Sheets</th>
+            </tr>
+
+            <tr>
+                <td>aluminium</td>
+                <td contenteditable="true">2</td>
+                <td contenteditable="true">1</td>
             </tr>
             <tr>
-                <th>A</th>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
+                <td>brass</td>
+                <td contenteditable="true">5</td>
+                <td contenteditable="true">6</td>
             </tr>
             <tr>
-                <th>B</th>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
+                <td>bronze</td>
+                <td contenteditable="true">2</td>
+                <td contenteditable="true">4</td>
             </tr>
             <tr>
-                <th>C</th>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
+                <td>copper</td>
+                <td contenteditable="true">2</td>
+                <td contenteditable="true">3</td>
             </tr>
             <tr>
-                <th>D</th>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
-                <td contenteditable="true"></td>
+                <td>mild steel</td>
+                <td contenteditable="true">3</td>
+                <td contenteditable="true">8</td>
+            </tr>
+            <tr>
+                <td>stainless steel</td>
+                <td contenteditable="true">7</td>
+                <td contenteditable="true">5</td>
+            </tr>
+            <tr>
+                <td>titanium</td>
+                <td contenteditable="true">1</td>
+                <td contenteditable="true">4</td>
+            </tr>
+            <tr>
+                <td>galvanised steel</td>
+                <td contenteditable="true">1</td>
+                <td contenteditable="true">2</td>
             </tr>
         </table>
-
     </div>
 
 <script>
-/* =======================
-   GET VALUE FROM MATRIX
-   row/col are 0-based (A=0, B=1, etc.)
-======================= */
-function getEdgeValue(row, col) {
-    const table = document.getElementById("matrixTable");
+/* ================================
+   GET VALUE (rowIndex 0-7, col 1-2)
+   col 1 = New Sheets
+   col 2 = Old Sheets
+================================ */
+function getValue(row, col) {
+    const table = document.getElementById("metalTable");
     const bodyRows = table.rows;
-    const cell = bodyRows[row + 1].cells[col + 1];
-    return cell.textContent.trim();
+    return bodyRows[row + 1].cells[col].textContent.trim();
 }
 
-/* =======================
-   SET VALUE IN MATRIX
-======================= */
-function setEdgeValue(row, col, value) {
-    const table = document.getElementById("matrixTable");
+/* ================================
+   SET VALUE
+================================ */
+function setValue(row, col, value) {
+    const table = document.getElementById("metalTable");
     const bodyRows = table.rows;
-    const cell = bodyRows[row + 1].cells[col + 1];
-    cell.textContent = value;
+    bodyRows[row + 1].cells[col].textContent = value;
 }
 
-/* =======================
-   EXAMPLE OUTPUT TO CONSOLE
-======================= */
-console.log("A → C =", getEdgeValue(0, 2)); // reads row A col C
-
-setEdgeValue(1, 3, "5"); // sets B → D = 5
-console.log("B → D updated to:", getEdgeValue(1, 3));
-
+/* =============== EXAMPLES =============== */
+console.log("Bronze (row 2) new sheets:", getValue(2, 1));
+setValue(0, 1, "10");
+console.log("Aluminium new sheets updated to:", getValue(0, 1));
 </script>
 
 </body>
 </html>
+
 
 
 

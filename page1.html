@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 1</title>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        table.matrix td {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+        }
+        table.matrix td[contenteditable="true"] {
+            background: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <div class="welcome-container">
@@ -20,77 +31,84 @@
 
         <hr><br>
 
-        <!-- NEW TABLE + BUTTONS -->
-        <h2>Editable Table</h2>
+        <h2>Editable Matrix Table</h2>
 
-        <div class="button-row">
-            <button onclick="addRow()">Add Row</button>
-            <button onclick="deleteRow()">Delete Last Row</button>
-        </div>
-
-      <table border="1" cellpadding="6" cellspacing="0">
-<tr>
-<th></th>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-<th>D</th>
-</tr>
-<tr>
-<th>A</th>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>B</th>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>C</th>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>D</th>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</table>
+        <!-- FIXED: Give the table an ID and make cells editable -->
+        <table id="matrixTable" class="matrix" border="1" cellpadding="6" cellspacing="0">
+            <tr>
+                <th></th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+            </tr>
+            <tr>
+                <th>A</th>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+            </tr>
+            <tr>
+                <th>B</th>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+            </tr>
+            <tr>
+                <th>C</th>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+            </tr>
+            <tr>
+                <th>D</th>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+            </tr>
+        </table>
 
     </div>
 
-    <script>
-        function addRow() {
-            let table = document.getElementById("myTable");
-            let row = table.insertRow(-1);
+<script>
+/* =======================
+   GET VALUE FROM MATRIX
+   row/col are 0-based (A=0, B=1, etc.)
+======================= */
+function getEdgeValue(row, col) {
+    const table = document.getElementById("matrixTable");
+    const bodyRows = table.rows;
+    const cell = bodyRows[row + 1].cells[col + 1];
+    return cell.textContent.trim();
+}
 
-            let id = row.insertCell(0);
-            let item = row.insertCell(1);
+/* =======================
+   SET VALUE IN MATRIX
+======================= */
+function setEdgeValue(row, col, value) {
+    const table = document.getElementById("matrixTable");
+    const bodyRows = table.rows;
+    const cell = bodyRows[row + 1].cells[col + 1];
+    cell.textContent = value;
+}
 
-            id.innerHTML = table.rows.length - 1;
-            item.innerHTML = "New Item";
-        }
+/* =======================
+   EXAMPLE OUTPUT TO CONSOLE
+======================= */
+console.log("A → C =", getEdgeValue(0, 2)); // reads row A col C
 
-        function deleteRow() {
-            let table = document.getElementById("myTable");
+setEdgeValue(1, 3, "5"); // sets B → D = 5
+console.log("B → D updated to:", getEdgeValue(1, 3));
 
-            if (table.rows.length > 1) {
-                table.deleteRow(-1);
-            }
-        }
-    </script>
+</script>
 
 </body>
 </html>
+
 
 
 

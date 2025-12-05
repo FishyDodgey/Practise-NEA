@@ -91,31 +91,61 @@
     </div>
 
 <script>
-/* ================================
-   GET VALUE (rowIndex 0-7, col 1-2)
-   col 1 = New Sheets
-   col 2 = Old Sheets
-================================ */
+// AUTO-SAVE TABLE TO LOCAL STORAGE
+function saveTable() {
+    const rows = document.querySelectorAll("#metalTable tr");
+    let data = [];
+
+    rows.forEach((row, rIndex) => {
+        if (rIndex === 0) return; // skip header
+        const cells = row.querySelectorAll("td");
+        data.push({
+            metal: cells[0].textContent.trim(),
+            newSheets: cells[1].textContent.trim(),
+            oldSheets: cells[2].textContent.trim()
+        });
+    });
+
+    localStorage.setItem("metalTableData", JSON.stringify(data));
+}
+
+// LOAD TABLE WHEN PAGE STARTS
+function loadTable() {
+    const saved = localStorage.getItem("metalTableData");
+    if (!saved) return;
+
+    const data = JSON.parse(saved);
+    const rows = document.querySelectorAll("#metalTable tr");
+
+    data.forEach((rowData, i) => {
+        const row = rows[i + 1].querySelectorAll("td");
+        row[0].textContent = rowData.metal;
+        row[1].textContent = rowData.newSheets;
+        row[2].textContent = rowData.oldSheets;
+    });
+}
+
+// Auto-save whenever the table is edited
+document.addEventListener("input", saveTable);
+
+// Load on startup
+loadTable();
+
+
+// Access helpers (if screens A/B need them)
 function getValue(row, col) {
-    const table = document.getElementById("metalTable");
-    const bodyRows = table.rows;
-    return bodyRows[row + 1].cells[col].textContent.trim();
+    return document.getElementById("metalTable")
+        .rows[row + 1].cells[col].textContent.trim();
 }
 
-/* ================================
-   SET VALUE
-================================ */
 function setValue(row, col, value) {
-    const table = document.getElementById("metalTable");
-    const bodyRows = table.rows;
-    bodyRows[row + 1].cells[col].textContent = value;
+    const cell = document.getElementById("metalTable")
+        .rows[row + 1].cells[col];
+    cell.textContent = value;
+    saveTable(); // keep saved
 }
-
-/* =============== EXAMPLES =============== */
-console.log("Bronze (row 2) new sheets:", getValue(2, 1));
-setValue(0, 1, "10");
-console.log("Aluminium new sheets updated to:", getValue(0, 1));
 </script>
+
 
 </body>
 </html>
